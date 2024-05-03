@@ -1,0 +1,17 @@
+name: test-workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo hello
+        run: echo "hello"
+        
