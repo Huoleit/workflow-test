@@ -22,17 +22,3 @@ jobs:
           repository: ETHZ-RobotX/smb_workspace
           commands: |
             create-workspace
-
-      - name: Add reaction if command was dispatched
-        if: ${{success()}}
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: rocket
-
-      - name: Add reaction if command was not dispatched
-        if: ${{failure()}}
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: confused
