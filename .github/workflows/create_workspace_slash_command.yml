@@ -1,0 +1,19 @@
+name: create-workspace-slash-command
+
+on: 
+  issue_comment: 
+    types: [created]
+
+jobs:
+  create-workspace-slash-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v4
+        with:
+          token: ${{ secrets.PAT }}
+          reaction-token: ${{ secrets.PAT }}
+          issue-type: pull-request
+          repository: ETHZ-RobotX/smb_workspace
+          commands: |
+            create-workspace
