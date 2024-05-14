@@ -17,7 +17,6 @@ jobs:
         uses: peter-evans/slash-command-dispatch@v4
         with:
           token: ${{ secrets.PAT }}
-          reaction-token: ${{ secrets.PAT }}
           issue-type: pull-request
           repository: ETHZ-RobotX/smb_workspace
           commands: |
