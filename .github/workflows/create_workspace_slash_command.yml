@@ -18,6 +18,6 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           issue-type: pull-request
-          repository: Huoleit/workflow-processor
+          repository: ETHZ-RobotX/smb_workspace
           commands: |
             create-workspace
