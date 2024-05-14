@@ -7,8 +7,13 @@ on:
 jobs:
   create-workspace-slash-command:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Slash Command Dispatch
+        id: slash-command-dispatch
+        continue-on-error: true
         uses: peter-evans/slash-command-dispatch@v4
         with:
           token: ${{ secrets.PAT }}
@@ -17,3 +22,17 @@ jobs:
           repository: ETHZ-RobotX/smb_workspace
           commands: |
             create-workspace
+
+      - name: Add reaction if command was dispatched
+        if: ${{success()}}
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: rocket
+
+      - name: Add reaction if command was not dispatched
+        if: ${{failure()}}
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: confused
