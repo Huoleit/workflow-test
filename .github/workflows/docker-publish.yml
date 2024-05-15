@@ -25,5 +25,5 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
       - name: Get first tag
         id: get_tag
-        run: echo "$(echo ${{ steps.meta.outputs.tags }} | cut -d $'\n' -f 1)"
+        run: echo "$(echo "${{ steps.meta.outputs.tags }}" | cut -d $'\n' -f 1)"
 
